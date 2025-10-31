@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IBM-NJ File Upload Manager</title>
+<style>
+body {
+font-family: Arial;
+background: #f2f2f2;
+text-align: center;
+padding: 40px;
+}
+#upload-box {
+background: white;
+padding: 20px;
+border-radius: 8px;
+width: 300px;
+margin: auto;
+box-shadow: 0 0 10px #ccc;
+}
+input, button {
+margin: 10px 0;
+padding: 8px;
+}
+</style>
+</head>
+<body>
+<div id="upload-box">
+<h2>IBM-NJ File Upload Manager</h2>
+<input type="file" id="fileInput"><br>
+<button onclick="uploadFile()">Upload</button>
+<p id="message"></p>
+<h3>Uploaded Files:</h3>
+<ul id="fileList"></ul>
+</div>
+<script>
+let uploadedFiles = [];
+function uploadFile() {
+const fileInput = document.getElementById("fileInput");
+const file = fileInput.files[0];
+if (!file) {
+document.getElementById("message").innerText = "Please select a
+file.";
+return;
+}
+uploadedFiles.push(file.name);
+document.getElementById("message").innerText = "File uploaded
+successfully!";
+displayFiles();
+fileInput.value = ""; // reset
+}
+function displayFiles() {
+const list = document.getElementById("fileList");
+list.innerHTML = "";
+uploadedFiles.forEach((name, index) => {
+const li = document.createElement("li");
+li.innerText = name;
+list.appendChild(li);
+});
+}
+</script>
+</body>
+</html>
